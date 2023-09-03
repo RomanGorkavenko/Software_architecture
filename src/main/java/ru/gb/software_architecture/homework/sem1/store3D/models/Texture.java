@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson1.store3D.models;
+package ru.gb.software_architecture.homework.sem1.store3D.models;
 
 public class Texture {
 
