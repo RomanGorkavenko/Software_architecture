@@ -1,6 +1,17 @@
-package ru.gb.software_architecture.homework.sem3;
+package ru.gb.software_architecture.homework.sem3.car;
 
-import java.awt.*;
+import ru.gb.software_architecture.homework.sem3.car.abstraction.Car;
+import ru.gb.software_architecture.homework.sem3.car.abstraction.interfaces.Cleaning;
+import ru.gb.software_architecture.homework.sem3.car.abstraction.interfaces.Refueling;
+import ru.gb.software_architecture.homework.sem3.car.enums.CleanType;
+import ru.gb.software_architecture.homework.sem3.car.enums.FuelType;
+import ru.gb.software_architecture.homework.sem3.car.enums.RoadType;
+import ru.gb.software_architecture.homework.sem3.car.impl.CarWashing;
+import ru.gb.software_architecture.homework.sem3.car.impl.RefuelingStation;
+import ru.gb.software_architecture.homework.sem3.car.impl.RefuelingStationV2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Program {
 
@@ -54,13 +65,45 @@ public class Program {
      */
     public static void main(String[] args) {
 
-        Harvester harvester = new Harvester("A", "B", Color.BLACK);
+        Car harvester = CarSelector.getINSTANCE().getCar(RoadType.CLEANING);
+        harvester.setFuelType(FuelType.Gasoline);
+        harvester.setCleanType(CleanType.Windshield, CleanType.All, CleanType.Engine);
 
+        Car soprtCar = CarSelector.getINSTANCE().getCar(RoadType.CITY);;
+        soprtCar.setFuelType(FuelType.Gasoline);
+        soprtCar.setCleanType(CleanType.Mirrors, CleanType.Engine, CleanType.Headlights);
+
+        Car jeep = CarSelector.getINSTANCE().getCar(RoadType.OFF_ROAD);
+        jeep.setFuelType(FuelType.Diesel);
+        jeep.setCleanType(CleanType.Body, CleanType.Trunk, CleanType.Mirrors);
+
+
+        RefuelingStationV2 refuelingStation2 = new RefuelingStationV2();
         RefuelingStation refuelingStation = new RefuelingStation();
+        CarWashing carWashing = new CarWashing();
 
-        harvester.setRefuelingStation(refuelingStation);
+        List<Refueling> refuelingList = new ArrayList<>(List.of(refuelingStation, refuelingStation2));
+        List<Cleaning> cleaningList = new ArrayList<>(List.of(carWashing, refuelingStation2));
 
-        harvester.fuel();
+        List<Car> carList = new ArrayList<>(List.of(harvester, soprtCar, jeep));
+
+
+
+        for (Car car: carList) {
+            int count = 1;
+            for (Refueling refueling: refuelingList) {
+                System.out.println("Машина " + car.getMake() + " заехала на заправку №" + count++);
+                car.setRefuelingStation(refueling);
+                car.fuel();
+            }
+            count = 1;
+            for (Cleaning cleaning: cleaningList) {
+                System.out.println("Машина " + car.getMake() + " заехала на мойку №" + count++);
+                car.setClean(cleaning);
+                car.clean();
+            }
+            System.out.println();
+        }
 
     }
 

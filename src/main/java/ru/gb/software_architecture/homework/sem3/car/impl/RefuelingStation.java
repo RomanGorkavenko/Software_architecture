@@ -1,6 +1,11 @@
-package ru.gb.software_architecture.homework.sem3;
+package ru.gb.software_architecture.homework.sem3.car.impl;
+
+
+import ru.gb.software_architecture.homework.sem3.car.abstraction.interfaces.Refueling;
+import ru.gb.software_architecture.homework.sem3.car.enums.FuelType;
 
 public class RefuelingStation implements Refueling {
+
     @Override
     public void fuel(FuelType fuelType) {
         switch (fuelType){
@@ -8,4 +13,5 @@ public class RefuelingStation implements Refueling {
             case Gasoline -> System.out.println("Заправка бензином");
         }
     }
+
 }
