@@ -9,7 +9,9 @@ class CustomerProvider {
     }
 
     public Customer getCustomer(String login, String password) {
-        return new Customer();
+        Customer customer = new Customer();
+        database.addCustomer(customer);
+        return customer;
     }
 
 }

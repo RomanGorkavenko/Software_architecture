@@ -12,12 +12,6 @@ class Database {
     private Collection<Ticket> tickets = new ArrayList<>();
     private Collection<Customer> customers = new ArrayList<>();
 
-    public Database() {
-        tickets.add(new Ticket());
-        tickets.add(new Ticket());
-        tickets.add(new Ticket());
-    }
-
     public Collection<Ticket> getTickets() {
 
         return tickets;
@@ -25,6 +19,14 @@ class Database {
 
     public Collection<Customer> getCustomers() {
         return customers;
+    }
+
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
+    }
+
+    public void addTicket(Ticket ticket) {
+        tickets.add(ticket);
     }
 
     /**

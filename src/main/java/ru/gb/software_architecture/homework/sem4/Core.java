@@ -14,6 +14,7 @@ class Core {
         ticketProvider = new TicketProvider(database, paymentProvider);
     }
 
+
     public TicketProvider getTicketProvider() {
         return ticketProvider;
     }

@@ -7,6 +7,8 @@ import java.util.Date;
  */
 class Ticket {
 
+    private static int counter;
+
     private int id;
 
     private int customerId;
@@ -16,6 +18,16 @@ class Ticket {
     private String qrcode;
 
     private boolean enable = true;
+
+    {
+        id = ++counter;
+    }
+
+    public Ticket(int customerId, String qrcode, Date date) {
+        this.customerId = customerId;
+        this.qrcode = qrcode;
+        this.date = date;
+    }
 
     public void setEnable(boolean enable) {
         this.enable = enable;

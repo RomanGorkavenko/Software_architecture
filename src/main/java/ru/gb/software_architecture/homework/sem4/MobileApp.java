@@ -24,12 +24,14 @@ class MobileApp {
         return customer.getTickets();
     }
 
-    public void searchTicket(Date date) {
-        customer.setTickets(ticketProvider.searchTicket(customer.getId(), new Date()));
+    public void searchTicket(Date date)
+            throws SearchTicketException, NotCorrectClientIdException, NullDateException,
+            NullUserCollectionException, NullTicketException {
+        customer.setTickets(ticketProvider.searchTicket(customer.getId(), date, customer.getTickets()));
     }
 
-    public boolean buyTicket(String cardNo) {
-        return ticketProvider.buyTicket(customer.getId(), cardNo);
+    public boolean buyTicket(String cardNo, Date date) throws NotCorrectClientIdException, NullDateException {
+        return ticketProvider.buyTicket(customer.getId(), cardNo, date);
     }
 
 }
