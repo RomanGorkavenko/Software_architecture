@@ -1,4 +1,6 @@
-package ru.gb.software_architecture.homework.sem4;
+package ru.gb.software_architecture.homework.sem4.data;
+
+import ru.gb.software_architecture.homework.sem4.exceptions.impl.NullTicketException;
 
 import java.util.ArrayList;
 import java.util.Collection;

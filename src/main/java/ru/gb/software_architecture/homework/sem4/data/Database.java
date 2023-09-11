@@ -1,4 +1,4 @@
-package ru.gb.software_architecture.homework.sem4;
+package ru.gb.software_architecture.homework.sem4.data;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,6 +1,6 @@
-package ru.gb.software_architecture.homework.sem4;
+package ru.gb.software_architecture.homework.sem4.data;
 
-class Core {
+public class Core {
 
     private final CustomerProvider customerProvider;
     private final TicketProvider ticketProvider;

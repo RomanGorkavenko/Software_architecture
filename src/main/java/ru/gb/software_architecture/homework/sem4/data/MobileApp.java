@@ -1,4 +1,6 @@
-package ru.gb.software_architecture.homework.sem4;
+package ru.gb.software_architecture.homework.sem4.data;
+
+import ru.gb.software_architecture.homework.sem4.exceptions.impl.*;
 
 import java.util.Collection;
 import java.util.Date;
@@ -6,7 +8,7 @@ import java.util.Date;
 /**
  * Мобильное приложение
  */
-class MobileApp {
+public class MobileApp {
 
     private final Customer customer;
     private final TicketProvider ticketProvider;
