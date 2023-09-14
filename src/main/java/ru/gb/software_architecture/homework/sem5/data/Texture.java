@@ -1,9 +1,11 @@
-package ru.gb.software_architecture.homework.sem5;
+package ru.gb.software_architecture.homework.sem5.data;
+
+import ru.gb.software_architecture.homework.sem5.data.entity.Entity;
 
 /**
  * Текстура
  */
-class Texture implements Entity {
+public class Texture implements Entity {
 
     private static int counter = 50000;
 

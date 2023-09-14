@@ -1,9 +1,9 @@
-package ru.gb.software_architecture.homework.sem5;
+package ru.gb.software_architecture.homework.sem5._1_UI;
 
 /**
  * Интерфейс UI
  */
-interface UILayer {
+public interface UILayer {
 
     void openProject(String fileName);
 
@@ -19,4 +19,9 @@ interface UILayer {
 
     void renderModel(int i);
 
+    void removeModel(int i);
+
+    void addModel();
+    void removeTexture(int i);
+    void addTexture();
 }

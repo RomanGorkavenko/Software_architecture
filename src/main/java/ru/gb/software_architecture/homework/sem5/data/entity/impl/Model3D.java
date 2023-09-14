@@ -1,4 +1,7 @@
-package ru.gb.software_architecture.homework.sem5;
+package ru.gb.software_architecture.homework.sem5.data.entity.impl;
+
+import ru.gb.software_architecture.homework.sem5.data.Texture;
+import ru.gb.software_architecture.homework.sem5.data.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +9,7 @@ import java.util.Collection;
 /**
  * 3D модель
  */
-class Model3D implements Entity {
+public class Model3D implements Entity {
 
     private static int counter = 10000;
     private int id;

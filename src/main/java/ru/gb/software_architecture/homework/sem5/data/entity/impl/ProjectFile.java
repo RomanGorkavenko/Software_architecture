@@ -1,9 +1,9 @@
-package ru.gb.software_architecture.homework.sem5;
+package ru.gb.software_architecture.homework.sem5.data.entity.impl;
 
 /**
  * Файл проекта
  */
-class ProjectFile {
+public class ProjectFile {
 
     private String fileName;
     private int setting1;
