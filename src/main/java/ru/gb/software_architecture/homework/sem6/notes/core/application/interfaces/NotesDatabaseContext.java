@@ -8,6 +8,12 @@ public interface NotesDatabaseContext {
 
     Collection<Note> getAll();
 
+    void add(Note note);
+
+    void remove(Note note);
+
+    void update(Note note);
+
     boolean saveChanges();
 
 }

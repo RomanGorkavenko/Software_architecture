@@ -20,29 +20,54 @@ public class ConcreteNoteEditor implements NoteEditor {
         this.notesPresenter = notesPresenter;
     }
 
+    /**
+     * Добавление заметки.
+     * Вызываем {@link NotesDatabaseContext#add(Note)} для добавления в БД
+     * @param item новая заметка.
+     * @return результат COMMIT transaction.
+     */
     @Override
     public boolean add(Note item) {
-        dbContext.getAll().add(item);
+        dbContext.add(item);
         return dbContext.saveChanges();
     }
 
+    /**
+     * Метод редактирования заметки.
+     * @param item заметка которую нужно отредактировать.
+     * @param title новое название заметки.
+     * @param details новое содержимое заметки.
+     * @return заметку с внесенными изменениями.
+     */
     @Override
-    public boolean edit(Note item) {
-        if (item == null)
-            return false;
-        Optional<Note> note = getById(item.getId());
-        if (note.isEmpty())
-            return false;
-        note.get().setTitle(item.getTitle());
-        note.get().setDetails(item.getDetails());
-        note.get().setEditDate(new Date());
-        return dbContext.saveChanges();
+    public Note edit(Note item, String title, String details) {
+        Note note = new Note(title, details);
+        note.setId(item.getId());
+        note.setCreationDate(note.getCreationDate());
+        note.setEditDate(new Date());
+        return note;
     }
 
+    /**
+     * Удаление заметки.
+     * @param item заметка, которую хотим удалить.
+     * @return результат COMMIT transaction.
+     */
     @Override
     public boolean remove(Note item) {
-        dbContext.getAll().remove(item);
+        dbContext.remove(item);
         return dbContext.saveChanges();
+    }
+
+    /**
+     * Создание заметки.
+     * @param title название заметки.
+     * @param details содержимое заметки.
+     * @return новую заметку.
+     */
+    @Override
+    public Note create(String title, String details) {
+        return new Note(title, details);
     }
 
     @Override
@@ -59,4 +84,25 @@ public class ConcreteNoteEditor implements NoteEditor {
     public void printAll() {
         notesPresenter.printAll(getAll());
     }
+
+    /**
+     * Обновление заметки.
+     * Сначала находим заметку по id, если заметка не найдена,
+     * бросаем исключение {@link RuntimeException}.
+     * С помощью {@link NoteEditor#remove(Object)}.
+     * Затем удаляем заметку из базы и добавляем обновленную.
+     * @param id идентификатор заметки которую хотим обновить.
+     * @param title название заметки.
+     * @param details содержимое заметки.
+     * @return результат COMMIT transaction.
+     */
+    @Override
+    public boolean update(int id, String title, String details) {
+        Note note = getById(id).orElseThrow(() -> new RuntimeException("Заметка не найдена."));
+        remove(note);
+        dbContext.update(edit(note, title, details));
+        return dbContext.saveChanges();
+    }
+
+
 }

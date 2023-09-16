@@ -16,16 +16,20 @@ public class NotesRecord {
         creationDate = new Date();
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
     public void setEditDate(Date editDate) {
         this.editDate = editDate;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public int getId() {

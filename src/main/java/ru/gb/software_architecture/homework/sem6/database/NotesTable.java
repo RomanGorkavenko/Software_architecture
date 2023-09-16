@@ -10,6 +10,18 @@ public class NotesTable {
 
     private Collection<NotesRecord> records;
 
+    private static NotesTable INSTANCE;
+
+    public static NotesTable getINSTANCE() {
+        if (INSTANCE==null){
+            INSTANCE = new NotesTable();
+        }
+        return INSTANCE;
+    }
+
+    private NotesTable() {
+    }
+
     public Collection<NotesRecord> getRecords() {
         if (records == null)
         {

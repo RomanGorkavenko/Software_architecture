@@ -8,9 +8,11 @@ public interface Editor<T, TId> {
 
     boolean add(T item);
 
-    boolean edit(T item);
+    T edit(T item, String title, String details);
 
     boolean remove(T item);
+
+    T create(String title, String details);
 
     Optional<T> getById(TId id);
 

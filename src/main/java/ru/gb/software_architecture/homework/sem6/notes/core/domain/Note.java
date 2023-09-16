@@ -15,28 +15,30 @@ public class Note {
 
     //region Constructors
 
-    public Note(int id, int userId, String title, String details, Date creationDate) {
-        this.id = id;
-        this.userId = userId;
+    public Note(String title, String details) {
         this.title = title;
         this.details = details;
-        this.creationDate = creationDate;
     }
 
     //endregion
 
     //region Public Getters And Setters (Properties)
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setEditDate(Date editDate) {
         this.editDate = editDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
