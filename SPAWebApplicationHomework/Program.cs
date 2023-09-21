@@ -13,7 +13,9 @@ namespace SPAWebApplicationHomework
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.MapGet("/", () => "Hello World!");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Home}");
 
             app.Run();
         }

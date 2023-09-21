@@ -1,0 +1,25 @@
+﻿@model List<SPAWebApplicationHomework.Models.Film>
+
+<div class="page-container">
+    <h1 style="align-self: center;">Каталог</h1>
+    <p>
+        Главная страница каталога фильмов.
+    </p>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach(var film in Model)
+        {
+            <div class="col">
+                <div class="card text-bg-dark mb-3" style="width: 18rem;">
+                    <img src="img/i.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@film.Name</h5>
+                        <p class="card-text">@film.Description</p>
+                        <a href="#" class="btn btn-light">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+</div>
