@@ -30,8 +30,8 @@ public class BookingPresenter implements ViewObserver {
         view.showTables(loadTables());
     }
 
-    public void updateUIShowReservationTableResult(int reservationNo){
-        view.showReservationTableResult(reservationNo);
+    public void updateUIShowReservationTableResult(String message, int reservationNo){
+        view.showReservationTableResult(message, reservationNo);
     }
 
     /**
@@ -44,11 +44,29 @@ public class BookingPresenter implements ViewObserver {
     public void onReservationTable(Date orderDate, int tableNo, String name) {
         try {
             int reservationNo = model.reservationTable(orderDate, tableNo, name);
-            updateUIShowReservationTableResult(reservationNo);
+            updateUIShowReservationTableResult("Столик успешно забронирован", reservationNo);
 
         }
         catch (RuntimeException e){
-            updateUIShowReservationTableResult(-1);
+            updateUIShowReservationTableResult(e.getMessage(), -1);
+        }
+    }
+
+    /**
+     * Произошло событие, пользователь нажал на кнопку изменения резерва
+     * @param oldReservation идентификатор бронирования (старый)
+     * @param reservationDate дата бронирования
+     * @param tableNo номер столика
+     * @param name Имя
+     */
+    @Override
+    public void onChangeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name) {
+        try {
+            int reservationNo = model.changeReservationTable(oldReservation, reservationDate, tableNo, name);
+            updateUIShowReservationTableResult("Бронь #" + oldReservation + " успешно отменена. " +
+                            "Столик успешно забронирован", reservationNo);
+        } catch (RuntimeException e) {
+            updateUIShowReservationTableResult(e.getMessage(), -1);
         }
     }
 }

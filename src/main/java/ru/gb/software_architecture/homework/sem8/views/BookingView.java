@@ -1,5 +1,6 @@
 package ru.gb.software_architecture.homework.sem8.views;
 
+import ru.gb.software_architecture.homework.sem8.models.Reservation;
 import ru.gb.software_architecture.homework.sem8.models.Table;
 import ru.gb.software_architecture.homework.sem8.presenters.View;
 import ru.gb.software_architecture.homework.sem8.presenters.ViewObserver;
@@ -12,23 +13,28 @@ public class BookingView implements View {
 
     private ViewObserver observer;
 
+    @Override
     public void setObserver(ViewObserver observer) {
         this.observer = observer;
     }
 
+    @Override
     public void showTables(Collection<Table> tables){
         for (Table table: tables) {
             System.out.println(table);
+            for (Reservation reservation: table.getReservations()) {
+                System.out.printf("     reservation = %d\n", reservation.getId());
+            }
         }
     }
 
     @Override
-    public void showReservationTableResult(int reservationNo) {
+    public void showReservationTableResult(String message, int reservationNo) {
         if (reservationNo > 0){
-            System.out.printf("Столик успешно забронирован. Номер вашей брони: #%d\n", reservationNo);
+            System.out.printf(message + ". Номер вашей брони: #%d\n", reservationNo);
         }
         else {
-            System.out.println("Что-то пошло не так, попробуйте повторить попытку позже.");
+            System.out.println(message + ", попробуйте повторить попытку позже.");
         }
     }
 
@@ -44,15 +50,16 @@ public class BookingView implements View {
     }
 
     /**
-     * TODO: Доработать самостоятельнов рамках домашней работы
      * Действие клиента (пользователь нажал на кнопку изменения резерва)
      * @param oldReservation идентификатор бронирования (старый)
      * @param reservationDate дата бронирования
      * @param tableNo номер столика
      * @param name Имя
      */
+    @Override
     public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
-
+        if (observer != null)
+            observer.onChangeReservationTable(oldReservation, reservationDate, tableNo, name);
     }
 
 

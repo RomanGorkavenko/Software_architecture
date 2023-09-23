@@ -6,21 +6,20 @@ import java.util.Locale;
 
 public class Table {
 
+    private final Collection<Reservation> reservations = new ArrayList<>();
+    private static int counter;
+    private final int no;
+
+    {
+        no = ++counter;
+    }
+
     public int getNo() {
         return no;
     }
 
     public Collection<Reservation> getReservations() {
         return reservations;
-    }
-
-    private final Collection<Reservation> reservations = new ArrayList<>();
-
-    private static int counter;
-    private final int no;
-
-    {
-        no = ++counter;
     }
 
     @Override

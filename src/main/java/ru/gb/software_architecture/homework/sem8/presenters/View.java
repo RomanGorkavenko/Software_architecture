@@ -17,7 +17,8 @@ public interface View {
      * Отобразить результат бронирования столика
      * @param reservationNo номер брони
      */
-    void showReservationTableResult(int reservationNo);
+
+    void showReservationTableResult(String message, int reservationNo);
 
 
     /**
@@ -33,5 +34,14 @@ public interface View {
      * @param name Имя клиента
      */
     void reservationTable(Date orderDate, int tableNo, String name);
+
+    /**
+     * Событие: Клиент нажал на кнопку изменения резерва
+     * @param oldReservation идентификатор бронирования (старый)
+     * @param reservationDate дата бронирования
+     * @param tableNo номер столика
+     * @param name Имя
+     */
+    void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name);
 
 }

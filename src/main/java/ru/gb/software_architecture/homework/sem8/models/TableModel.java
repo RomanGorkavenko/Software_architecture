@@ -44,19 +44,29 @@ public class TableModel implements Model {
                 return reservation.getId();
             }
         }
-        throw new RuntimeException("Ошибка бронирования столика. Повторите попытку позже.");
+        throw new RuntimeException("Ошибка бронирования столика");
     }
 
     /**
-     * TODO: Доработать самостоятельнов рамках домашней работы
-     * @param oldReservation
-     * @param reservationDate
-     * @param tableNo
-     * @param name
-     * @return
+     * Изменение бронирования
+     * @param oldReservation Номер прошлого бронирования
+     * @param reservationDate Дата бронирования
+     * @param tableNo Номер столика
+     * @param name Имя
+     * @return Номер бронирования
      */
+    @Override
     public int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
-        return -1;
+        for (Table table: tables) {
+            for (Reservation reservation: table.getReservations()) {
+                if (reservation.getId() == oldReservation) {
+                    int reservationId = reservationTable(reservationDate, tableNo, name);
+                    table.getReservations().remove(reservation);
+                    return reservationId;
+                }
+            }
+        }
+        throw new RuntimeException("Не корректный номер бронирования");
     }
 
 }
