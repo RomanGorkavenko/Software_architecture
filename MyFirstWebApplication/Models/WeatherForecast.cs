@@ -1,0 +1,26 @@
+﻿namespace MyFirstWebApplication.Models
+{
+    /// <summary>
+    /// Прогноз погоды
+    /// </summary>
+    public class WeatherForecast
+    {
+        /// <summary>
+        /// Дата измерения
+        /// </summary>
+        public DateTime Date { get; set; }
+
+        /// <summary>
+        /// Температура в градусах цельсия
+        /// </summary>
+        public int TemperatureC { get; set; }
+
+        /// <summary>
+        /// Температура в градусах форенгейта
+        /// </summary>
+        public int TemperatureF 
+        { 
+            get { return 32 + (int)(TemperatureC / 0.5556); } 
+        }
+    }
+}
