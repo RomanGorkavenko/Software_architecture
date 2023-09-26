@@ -26,7 +26,7 @@ namespace MyFirstWebApplication.Controllers
         public IActionResult Update([FromQuery] DateTime date, [FromQuery] int temperatureC)
         {
             bool result = _weatherForecastHolder.Update(date, temperatureC);
-            return Ok();
+            return Ok(result);
         }
 
         [HttpDelete("delete")]
