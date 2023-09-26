@@ -39,7 +39,6 @@ namespace MyFirstWebApplication.Controllers
         public IActionResult Get([FromQuery] DateTime dateFrom, [FromQuery] DateTime dateTo)
         {
             List<WeatherForecast> list = _weatherForecastHolder.Get(dateFrom, dateTo);
-            //IEnumerable<WeatherForecast>
             return Ok(list);
         }
     }
