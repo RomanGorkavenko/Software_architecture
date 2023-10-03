@@ -12,32 +12,78 @@ namespace ClinicService.Services.impl
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                // Прописываем в команду SQL-запрос на добавление данных
                 SqliteCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO clients(ClientId, Name, Birthday) VALUES(@ClientId, @Name, @Birthday)";
-                command.Parameters.AddWithValue("@Document", item.ClientId);
-                command.Parameters.AddWithValue("@SurName", item.Name);
-                command.Parameters.AddWithValue("@FirstName", item.Birthday.Ticks);
-                // подготовка команды к выполнению
+                command.CommandText = "INSERT INTO pets(ClientId, Name, Birthday) VALUES(@ClientId, @Name, @Birthday)";
+                command.Parameters.AddWithValue("@ClientId", item.ClientId);
+                command.Parameters.AddWithValue("@Name", item.Name);
+                command.Parameters.AddWithValue("@Birthday", item.Birthday.Ticks);
                 command.Prepare();
-                // Выполнение команды
                 return command.ExecuteNonQuery();
             }
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                SqliteCommand command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM pets WHERE PetId=@PetId";
+                command.Parameters.AddWithValue("@PetId", id);
+                command.Prepare();
+                return command.ExecuteNonQuery();
+            }
         }
 
         public List<Pet> GetAll()
         {
-            throw new NotImplementedException();
+            List<Pet> list = new List<Pet>();
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                SqliteCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM pets";
+                SqliteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Pet pet = new Pet
+                    {
+                        PetId = reader.GetInt32(0),
+                        ClientId = reader.GetInt32(1),
+                        Name = reader.GetString(2),
+                        Birthday = new DateTime(reader.GetInt64(3))
+                    };
+
+                    list.Add(pet);
+                }
+            }
+            return list;
         }
 
         public Pet GetById(int id)
         {
-            throw new NotImplementedException();
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                SqliteCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM pets WHERE PetId=@PetId";
+                command.Parameters.AddWithValue("@PetId", id);
+                command.Prepare();
+                SqliteDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    Pet pet = new Pet
+                    {
+                        PetId = reader.GetInt32(0),
+                        ClientId = reader.GetInt32(1),
+                        Name = reader.GetString(2),
+                        Birthday = new DateTime(reader.GetInt64(3))
+                    };
+
+                    return pet;
+                }
+            }
+            return null;
         }
 
         public int Update(Pet item)
@@ -45,16 +91,13 @@ namespace ClinicService.Services.impl
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                // Прописываем в команду SQL-запрос на добавление данных
                 SqliteCommand command = connection.CreateCommand();
-                command.CommandText = "UPDATE clients SET ClientId = @ClientId, Name = @Name, Birthday = @Birthday WHERE PetId=@PetId";
-                command.Parameters.AddWithValue("@ClientId", item.PetId);
-                command.Parameters.AddWithValue("@Document", item.ClientId);
-                command.Parameters.AddWithValue("@SurName", item.Name);
-                command.Parameters.AddWithValue("@FirstName", item.Birthday.Ticks);
-                // подготовка команды к выполнению
+                command.CommandText = "UPDATE pets SET ClientId = @ClientId, Name = @Name, Birthday = @Birthday WHERE PetId=@PetId";
+                command.Parameters.AddWithValue("@PetId", item.PetId);
+                command.Parameters.AddWithValue("@ClientId", item.ClientId);
+                command.Parameters.AddWithValue("@Name", item.Name);
+                command.Parameters.AddWithValue("@Birthday", item.Birthday.Ticks);
                 command.Prepare();
-                // Выполнение команды
                 return command.ExecuteNonQuery();
             }
         }
