@@ -25,18 +25,20 @@ namespace MyFirstWebApplication.Controllers
         [HttpPut("update")]
         public IActionResult Update([FromQuery] DateTime date, [FromQuery] int temperatureC)
         {
-            return Ok();
+            bool result = _weatherForecastHolder.Update(date, temperatureC);
+            return Ok(result);
         }
 
         [HttpDelete("delete")]
         public IActionResult Delete([FromQuery] DateTime date)
         {
-            return Ok();
+            bool result = _weatherForecastHolder.Delete(date);
+            return Ok(result);
         }
 
 
         [HttpGet("get")]
-        public IActionResult Get([FromQuery] DateTime dateFrom, [FromQuery] DateTime dateTo)
+        public IActionResult Get([FromQuery] DateTime dateFrom, [FromQuery] DateTime dateTo) //IEnumerable<WeatherForecast>
         {
             List<WeatherForecast> list = _weatherForecastHolder.Get(dateFrom, dateTo);
             return Ok(list);
