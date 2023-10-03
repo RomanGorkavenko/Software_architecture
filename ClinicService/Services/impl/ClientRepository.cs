@@ -6,6 +6,7 @@ namespace ClinicService.Services.impl
     public class ClientRepository : IClientRepository
     {
 
+
         private const string connectionString = "Data Source = clinic.db;";
 
 
