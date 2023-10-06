@@ -239,6 +239,7 @@
         "tags": [
           "Consultation"
         ],
+        "operationId": "ConsultationCreate",
         "requestBody": {
           "content": {
             "application/json": {
@@ -260,7 +261,27 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
           }
         }
       }
@@ -270,6 +291,7 @@
         "tags": [
           "Consultation"
         ],
+        "operationId": "ConsultationUpdate",
         "requestBody": {
           "content": {
             "application/json": {
@@ -291,7 +313,27 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
           }
         }
       }
@@ -301,6 +343,7 @@
         "tags": [
           "Consultation"
         ],
+        "operationId": "ConsultationDelete",
         "parameters": [
           {
             "name": "ConsultationId",
@@ -314,7 +357,27 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
           }
         }
       }
@@ -324,9 +387,36 @@
         "tags": [
           "Consultation"
         ],
+        "operationId": "ConsultationGetAll",
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Consultation"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Consultation"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Consultation"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -336,6 +426,7 @@
         "tags": [
           "Consultation"
         ],
+        "operationId": "ConsultationGetById",
         "parameters": [
           {
             "name": "ConsultationId",
@@ -350,7 +441,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Consultation"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Consultation"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Consultation"
+                }
+              }
+            }
           }
         }
       }
@@ -360,6 +468,7 @@
         "tags": [
           "Pet"
         ],
+        "operationId": "PetCreate",
         "requestBody": {
           "content": {
             "application/json": {
@@ -381,7 +490,27 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
           }
         }
       }
@@ -391,6 +520,7 @@
         "tags": [
           "Pet"
         ],
+        "operationId": "PetUpdate",
         "requestBody": {
           "content": {
             "application/json": {
@@ -412,7 +542,27 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
           }
         }
       }
@@ -422,6 +572,7 @@
         "tags": [
           "Pet"
         ],
+        "operationId": "PetDelete",
         "parameters": [
           {
             "name": "petId",
@@ -435,7 +586,27 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
           }
         }
       }
@@ -445,9 +616,36 @@
         "tags": [
           "Pet"
         ],
+        "operationId": "PetGetAll",
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -457,6 +655,7 @@
         "tags": [
           "Pet"
         ],
+        "operationId": "PetGetById",
         "parameters": [
           {
             "name": "petId",
@@ -471,7 +670,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
           }
         }
       }
@@ -505,6 +721,32 @@
           "birthday": {
             "type": "string",
             "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Consultation": {
+        "type": "object",
+        "properties": {
+          "consultationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "petId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "consultationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -560,6 +802,28 @@
       "CreatePetRequest": {
         "type": "object",
         "properties": {
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pet": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "clientId": {
             "type": "integer",
             "format": "int32"

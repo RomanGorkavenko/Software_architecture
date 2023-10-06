@@ -40,6 +40,7 @@ namespace ClinicService.Controllers
             int res = _clientRepository.Update(new Client
             {
                 ClientId = updateRequest.ClientId,
+                Document = updateRequest.Document,
                 SurName = updateRequest.SurName,
                 FirstName = updateRequest.FirstName,
                 Patronymic = updateRequest.Patronymic,
