@@ -80,5 +80,65 @@ namespace ClinicServiceTests
                 .Create(It.IsNotNull<Client>()), Times.AtLeastOnce());
 
         }
+
+        [Fact]
+        public void DeleteClientTest()
+        {
+            _mockClientRepository.Setup(repository => repository.Delete(1)).Returns(1);
+
+            var operationResult = _clientController.Delete(1);
+
+            Assert.IsType<OkObjectResult>(operationResult.Result);
+            Assert.IsAssignableFrom<int>(((OkObjectResult)operationResult.Result).Value);
+
+            _mockClientRepository.Verify(repository => repository.Delete(1), Times.Once);
+        }
+
+        [Fact]
+        public void GetClientByIdTest()
+        {
+            Client client = new Client();
+
+            _mockClientRepository.Setup(repository => repository.GetById(1)).Returns(client);
+
+            var operationResult = _clientController.GetById(1);
+
+            Assert.IsType<OkObjectResult>(operationResult.Result);
+            Assert.IsAssignableFrom<Client>(((OkObjectResult)operationResult.Result).Value);
+
+            _mockClientRepository.Verify(repository => repository.GetById(1), Times.Once);
+        }
+
+        public static readonly object[][] CorrectUpdateClientData =
+        {
+            new object[] { 1, new DateTime(1985, 5, 20), "123 1234", "Иванов", "Андрей", "Сергеевич" },
+            new object[] { 2, new DateTime(1987, 2, 18), "123 2222", "Иванов", "Андрей", "Сергеевич" },
+            new object[] { 3, new DateTime(1979, 1, 22), "123 4321", "Иванов", "Андрей", "Сергеевич" },
+        };
+
+        [Theory]
+        [MemberData(nameof(CorrectUpdateClientData))]
+        public void UpdateClientTest(int IdClient, DateTime birthday, string document, string surName, string firstName, string patronymic)
+        {
+            _mockClientRepository.Setup(repository => repository
+                .Update(It.IsNotNull<Client>()))
+                .Returns(1).Verifiable();
+
+            var operationResult = _clientController.Update(new UpdateClientRequest
+            {
+                ClientId = IdClient,
+                Birthday = birthday,
+                Document = document,
+                SurName = surName,
+                FirstName = firstName,
+                Patronymic = patronymic
+            });
+
+            Assert.IsType<OkObjectResult>(operationResult.Result);
+            Assert.IsAssignableFrom<int>(((OkObjectResult)operationResult.Result).Value);
+            _mockClientRepository.Verify(repository => repository
+                .Update(It.IsNotNull<Client>()), Times.Once());
+
+        }
     }
 }
